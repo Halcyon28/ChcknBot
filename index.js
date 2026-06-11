@@ -20,6 +20,31 @@ app.command("/chckn-ping", async ({ command, ack, respond }) => {
   await respond({ text: `Pong!\nLatency: ${latency}ms` });
 });
 
+app.command("/chckn-echo", async ({ command, ack, respond }) => {
+  await ack();
+
+  const text = command.text?.trim();
+
+  if (!text) {
+    return await respond({
+      text: "Usage: `/chckn-echo your message here`"
+    });
+  }
+
+  await respond({
+    text: `*${text}*`
+  });
+});
+
+app.command("/chckn-coinflip", async ({ ack, respond }) => {
+  await ack();
+
+  const result = Math.random() < 0.5 ? "Heads 🪙" : "Tails 🪙";
+
+  await respond({
+    text: `You flipped: *${result}* did you get lucky?`
+  });
+});
 
 app.command("/chckn-randomfact", async ({ ack, respond }) => {
   await ack();
@@ -57,7 +82,9 @@ app.command("/chckn-help", async ({ ack, respond }) => {
 `Available Commands:
 /chckn-ping - Check bot latency
 /chckn-randomfact - Get a random fact
-/chckn-help - Show this help message`
+/chckn-help - Show this help message
+/chckn-coinflip - Flip a coin
+/chckn-echo [message] - Echo back your message`
   });
 });
 
