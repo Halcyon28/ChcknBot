@@ -1,4 +1,7 @@
 Its just a stupid Slack bot I made to learn to use api's and javascript
+
+Feel free to copy the command scripts!
+Just make sure to make a .env file with all the API keys
 	
 	All commands!:
 
